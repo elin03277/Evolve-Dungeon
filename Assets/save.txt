@@ -1,0 +1,1 @@
+{"playerHealth":2000,"enemyHealth":100,"playerAttackDmg":10,"enemyAttackDmg":10,"enemySpawn":0.20000000298023225,"healthSpawn":0.20000000298023225}
