@@ -6,11 +6,17 @@ TagManager:
   tags:
   - SpawnPoint
   - Rooms
-  - Skeleton
   - Sword
   - Ground
   - Wall
   - HealthPotion
+  - AttackPotion
+  - SpeedPotion
+  - Obstacle
+  - LevelGem
+  - Enemy
+  - Door
+  - Questionnaire
   layers:
   - Default
   - TransparentFX
@@ -25,9 +31,9 @@ TagManager:
   - Consumable
   - Wall
   - Sword
-  - 
-  - 
-  - 
+  - Obstacle
+  - LevelGem
+  - Door
   - 
   - 
   - 

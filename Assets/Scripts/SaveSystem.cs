@@ -7,7 +7,7 @@ public static class SaveSystem
 {
     private static readonly string SAVE_FOLDER = Application.dataPath + "/SaveFolder";
 
-    public static void Init()
+    public static void Initialize()
     {
         if (!Directory.Exists(SAVE_FOLDER)) {
             Directory.CreateDirectory(SAVE_FOLDER);
@@ -18,7 +18,7 @@ public static class SaveSystem
     {
         int saveNum = 1;
 
-        while (File.Exists("save_" + saveNum + ".txt"))
+        while (File.Exists(SAVE_FOLDER + "/save_" + saveNum + ".txt"))
         {
             saveNum++;
         }
@@ -29,7 +29,7 @@ public static class SaveSystem
     public static string Load()
     {
         DirectoryInfo directoryInfo = new DirectoryInfo(SAVE_FOLDER);
-        FileInfo[] saveFiles = directoryInfo.GetFiles();
+        FileInfo[] saveFiles = directoryInfo.GetFiles("*.txt");
         FileInfo mostRecentFile = null;
 
         foreach (FileInfo fileInfo in saveFiles)
@@ -38,6 +38,7 @@ public static class SaveSystem
             {
                 mostRecentFile = fileInfo;
             } else if (fileInfo.LastWriteTime > mostRecentFile.LastWriteTime) {
+                 //Debug.Log("Recent file: " + fileInfo.FullName + "Old file: " + mostRecentFile.Name);
                 mostRecentFile = fileInfo;
             }
         }
@@ -45,7 +46,6 @@ public static class SaveSystem
         if (mostRecentFile != null)
         {
             string save = File.ReadAllText(mostRecentFile.FullName);
-
             return save;
         } else {
             return null;

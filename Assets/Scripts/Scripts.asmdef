@@ -1,0 +1,5 @@
+﻿{
+	"name": "NewAssembly",
+    "references": [ "Unity.TextMeshPro" ],
+    "optionalUnityReferences": [ "TestAssemblies" ]
+}

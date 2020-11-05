@@ -16,7 +16,7 @@ public class SwordProjectile : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        //swordDamage = 20f;
     }
 
   void OnDrawGizmosSelected()
@@ -27,32 +27,19 @@ public class SwordProjectile : MonoBehaviour
     void OnCollisionEnter2D(Collision2D col)
     {
 
-        Collider2D[] hitObjects = Physics2D.OverlapCircleAll(swordPoint.position, swordRange,  swordCollisionLayers);
+        Collider2D[] hitObjects = Physics2D.OverlapCircleAll(swordPoint.position, swordRange, swordCollisionLayers);
 
         foreach (Collider2D obj in hitObjects)
         {
             if(obj.name == "Skeleton(Clone)")
             {
+                // Debug.Log(swordDamage);
                 obj.GetComponent<Enemy>().TakeEnemyDamage(swordDamage);
             }
             // Debug.Log("We hit: " + obj.name);
             Destroy(gameObject);
 
         }
-
-        /*      if(hitInfo.gameObject.name == "Tilemap_Walls")
-              {
-                  Debug.Log("Wall hit");
-              } 
-              else if(hitInfo.gameObject.name == "Skeleton")
-              {
-                  Debug.Log("Skeleton hit");
-                  //hitInfo.
-              }
-
-              if (gameObject != null && hitInfo.gameObject.name != "Player")
-              {
-                  Destroy(gameObject);
-              }*/
     }
+
 }

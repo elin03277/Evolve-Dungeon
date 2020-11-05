@@ -1,1 +1,1 @@
-{"playerHealth":2000,"enemyHealth":100,"playerAttackDmg":10,"enemyAttackDmg":10,"enemySpawn":0.20000000298023225,"healthSpawn":0.20000000298023225}
+{"playerHealth":100.0,"playerAttack":25.0,"playerHeal":20.0,"potionChance":0.4699999988079071,"roomLength":2.0,"enemyHealth":102.0,"enemyAttack":21.0,"enemyChance":0.550000011920929,"fitness":2958.0,"generation":11.0}

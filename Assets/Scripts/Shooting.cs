@@ -8,7 +8,11 @@ public class Shooting : MonoBehaviour
     public GameObject projectilePrefab;
     public Camera cam;
 
+    public float swordSetDamage = 20f;
     public float projectileForce = 20f;
+
+    public float fireRate = 2f;
+    public float fireCooldown = 0f;
 
     Vector3 mousePos;
 
@@ -18,21 +22,28 @@ public class Shooting : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
 
-        if (Input.GetButtonDown("Fire1"))
+        fireCooldown -= Time.fixedDeltaTime;
+
+        if (fireCooldown < 0f)
         {
-            // Reference and inspector if need to play more
-            FindObjectOfType<AudioManager>().Play("SwordFire");
-            shoot();
+            if (Input.GetButtonDown("Fire1"))
+            {
+                // Reference and inspector if need to play more
+                FindObjectOfType<AudioManager>().Play("SwordFire");
+                shoot();
+                fireCooldown = 1f / fireRate;
+            }
         }
     }
 
     void shoot()
     {
         GameObject projectile = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
+        projectile.GetComponent<SwordProjectile>().swordDamage = swordSetDamage;
         Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
         Vector3 rotationZ = mousePos - firePoint.position;
         float angle = Mathf.Atan2(rotationZ.y, rotationZ.x) * Mathf.Rad2Deg - 90f;
